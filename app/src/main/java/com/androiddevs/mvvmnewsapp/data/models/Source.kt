@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.data.api.response
+package com.androiddevs.mvvmnewsapp.data.models
 
 data class Source(
     val id: String,

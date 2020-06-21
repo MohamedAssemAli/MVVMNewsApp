@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.data.api.response
+package com.androiddevs.mvvmnewsapp.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
