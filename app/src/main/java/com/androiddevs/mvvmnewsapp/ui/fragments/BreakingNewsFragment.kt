@@ -16,7 +16,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private val TAG = "BreakingNewsFragment"
     private lateinit var viewModel: NewsViewModel
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +58,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         newsAdapter = NewsAdapter()
         rvBreakingNews.apply {
             adapter = newsAdapter
-//            layoutManager - LinearLayoutManager(activity)
         }
     }
 }
