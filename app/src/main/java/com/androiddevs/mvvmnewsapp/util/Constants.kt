@@ -3,7 +3,7 @@ package com.androiddevs.mvvmnewsapp.util
 
 /**
  * Created by Mohamed Assem on 21-Jun-20.
- * Email: mo7mad.assim@gmail.com
+ * mo7mad.assim@gmail.com
  */
 
 class Constants {

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Created by Mohamed Assem on 21-Jun-20.
- * Email: mo7mad.assim@gmail.com
+ * mo7mad.assim@gmail.com
  */
 
 class ServiceBuilder {

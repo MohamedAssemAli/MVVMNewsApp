@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.item_article_preview.view.*
  * Created by Mohamed Assem on 21-Jun-20.
  * mo7mad.assim@gmail.com
  */
+
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -67,5 +68,5 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 }
