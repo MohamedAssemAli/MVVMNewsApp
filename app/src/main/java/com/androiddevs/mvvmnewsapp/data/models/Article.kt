@@ -1,5 +1,6 @@
 package com.androiddevs.mvvmnewsapp.data.models
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
@@ -9,7 +10,8 @@ import java.io.Serializable
 )
 data class Article(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+    @NonNull
+    var id: Int,
     val author: String,
     val content: String,
     val description: String,
