@@ -3,10 +3,13 @@ package com.androiddevs.mvvmnewsapp.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.androiddevs.mvvmnewsapp.data.models.Article
 import com.androiddevs.mvvmnewsapp.data.models.NewsResponse
 import com.androiddevs.mvvmnewsapp.data.repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.util.Resource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -26,9 +29,13 @@ class NewsViewModel(
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsNewsPage = 1
 
-    init {
-        getBreakingNews("us")
-    }
+//    init {
+//        getBreakingNews("us")
+//    }
+
+    fun getPagedBreakingNews(countryCode: String): Flow<PagingData<Article>> =
+        newsRepository.getPagedBreakingNews(countryCode).cachedIn(viewModelScope)
+
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
         breakingNews.postValue(Resource.Loading())
