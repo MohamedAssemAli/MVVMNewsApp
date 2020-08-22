@@ -21,8 +21,6 @@ import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
@@ -33,29 +31,30 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var pagedNewsAdapter: PagedNewsAdapter
 
-    private var searchJob: Job? = null
+    private var getNewsJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
-        setupRecyclerView()
-//        initAdapter()
+//        setupRecyclerView()
+        setRecyclerViewWithPagination()
         getPagedNews()
+//        initAdapterWithFooterAndHeader()
 //        getNews()
     }
 
 
     private fun getPagedNews() {
         // Make sure we cancel the previous job before creating a new one
-        searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
+        getNewsJob?.cancel()
+        getNewsJob = lifecycleScope.launch {
             viewModel.getPagedBreakingNews("eg").collectLatest {
                 pagedNewsAdapter.submitData(it)
             }
         }
     }
 
-    private fun initAdapter() {
+    private fun initAdapterWithFooterAndHeader() {
         pagedNewsAdapter = PagedNewsAdapter()
         rvBreakingNews.apply {
             adapter = pagedNewsAdapter.withLoadStateHeaderAndFooter(
@@ -128,7 +127,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         paginationProgressBar.visibility = View.VISIBLE
     }
 
-    private fun setupRecyclerView() {
+    private fun setRecyclerViewWithPagination() {
+
         pagedNewsAdapter = PagedNewsAdapter()
         rvBreakingNews.apply {
             adapter = pagedNewsAdapter
@@ -155,11 +155,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             }
 
         }
+    }
 
-//        newsAdapter = NewsAdapter()
-//        rvBreakingNews.apply {
-//            adapter = newsAdapter
-//        }
-
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        rvBreakingNews.apply {
+            adapter = newsAdapter
+        }
     }
 }

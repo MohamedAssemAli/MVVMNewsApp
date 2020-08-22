@@ -19,13 +19,9 @@ class NewsLoadStateAdapter(
     private val retry: () -> Unit
 ) : LoadStateAdapter<NewsLoadStateAdapter.NewsLoadStateViewHolder>() {
 
-    inner class NewsLoadStateViewHolder(
+    class NewsLoadStateViewHolder(
         itemView: View, retry: () -> Unit
-    ) : RecyclerView.ViewHolder(itemView) {
-//        init {
-//            itemView.retry_button.setOnClickListener { retry.invoke() }
-//        }
-    }
+    ) : RecyclerView.ViewHolder(itemView)
 
     override fun onBindViewHolder(holder: NewsLoadStateViewHolder, loadState: LoadState) {
         holder.itemView.apply {

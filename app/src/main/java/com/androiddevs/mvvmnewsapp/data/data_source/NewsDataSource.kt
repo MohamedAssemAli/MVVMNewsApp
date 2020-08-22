@@ -22,14 +22,10 @@ class NewsDataSource(private val countryCode: String) : PagingSource<Int, Articl
             val response = ServiceBuilder.api.getPagedBreakingNews(countryCode, position)
             if (response.isSuccessful) {
                 val articles = response.body()!!.articles
-//                Log.d("Assem", "response.isSuccessful")
-//                Log.d("Assem", "articles ${articles[0]}")
                 LoadResult.Page(
                     data = articles,
-//                    prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
                     prevKey = null, // Only paging forward.
                     nextKey = if (articles.isEmpty()) null else position + 1
-//                    nextKey = if (articles.isEmpty()) null else (if (position < 2) (position + 1) else null)
                 )
             } else {
                 Log.d("Assem", "error")
